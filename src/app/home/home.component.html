@@ -1,0 +1,40 @@
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="row" style="text-align: center;" id="postalInput">
+      <input type="text" formControlName="postal" />
+    </div>
+    <br />
+    <div class="row" style="text-align: center;">
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="!searchForm.valid"
+      >
+        Find Closest Camps
+      </button>
+    </div>
+  </form>
+
+  <br />
+
+  <!-- displaying results -->
+  <div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <div>
+    <p *ngFor="let result of resultsArr">
+      <strong>{{ result[0] }}</strong
+      >: {{ result[1] }}
+    </p>
+  </div>
+
+  <br />
+
+  <div id="errors">
+    <p *ngFor="let error of errorsArr">
+      <strong>{{ error[0] }}</strong
+      >: {{ error[1] }}
+    </p>
+  </div>
+</div>
